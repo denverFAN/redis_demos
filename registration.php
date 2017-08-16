@@ -11,8 +11,7 @@ $redis = new Predis\Client('tcp://localhost:6379');
 
 // Check if login is available
 if ($redis->hget('users', $login)) {
-    echo 'This login is already taken';
-    die();
+    die('This login is already taken');
 }
 
 // Add input data to DB, generate auth token
@@ -26,7 +25,7 @@ $redis->hmset("user:$userId", [
 ]);
 // Add auth token for the next checking if user is logged in
 $redis->hset('auths', $auth, $userId);
-echo "login - $login with userId - $userId added to database successfully <br/>";
+echo "login - $login with userId - $userId added to database successfully \n";
 
 
 

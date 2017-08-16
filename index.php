@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 
 // Make a Connection
 $redis = new Predis\Client('tcp://localhost:6379');
-echo "Connection to database successfully <br/>";
+echo "Connection to database successfully \n";
 
 // set a value to a particular key
 $redis->set("username", "Ivan");
@@ -14,7 +14,7 @@ $redis->set("age", "25");
 $value = $redis->get("username");
 
 // reports back whether the provided key is found or not in Redis’ storage
-echo ($redis->exists("username")) ? "true<br/>" : "false<br/>";
+echo ($redis->exists("username")) ? "true \n" : "false \n";
 
 // increment/decrement values (by 1)
 $redis->incr("age");
@@ -35,7 +35,7 @@ $redis->hmset("personalInfo", [
 ]);
 // get the value for a key on the hash object
 $value = $redis->hget("personalInfo", "gender");
-echo "Gender: $value<br/>";
+echo "Gender: $value \n";
 // remove a key from the object
 $redis->hdel("profile", "lastname");
 // increment the value for a key of the hash object with a specified value
@@ -54,7 +54,7 @@ $redis->rpush($key, "PHP");
 $redis->lpush($key, "MySQL");
 // get the length of a list
 $length = $redis->llen($key);
-echo "Number of skills in list: $length<br/>";
+echo "Number of skills in list: $length \n";
 // get elements from a list (0, -1 - return all elements)
 $elements = $redis->lrange($key, 0, -1);
 echo "<pre>";
@@ -62,10 +62,10 @@ var_dump($elements);
 echo "</pre>";
 // remove and retrieve the first element of a list
 $firstElement = $redis->lpop($key);
-echo "$firstElement<br/>";
+echo $firstElement."\n";
 // remove and retrieve the last element of a list
 $lastElement = $redis->rpop($key);
-echo "$lastElement<br/>";
+echo $lastElement."\n";
 
 // commands to handle data persistence
 // set an expiration timeout (in seconds) for a key after which it and its value will be deleted.
@@ -74,7 +74,7 @@ $redis->expire("age", 3600);
 $redis->expireat("age", strtotime("+1 week"));
 // get the remaining time (in seconds) left to live for a key with an expiration
 $timeToLive = $redis->ttl("age");
-echo "$timeToLive<br/>";
+echo $timeToLive."\n";
 // remove the expiration on the given key
 $redis->persist("age");
 

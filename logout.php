@@ -14,6 +14,6 @@ if (!empty($_COOKIE['auth'])) {
         $redis->hset("user:$userId", 'auth', $newAuth);
         $redis->hdel('auths', $auth);
         $redis->hset('auths', $newAuth, $userid);
-        echo "userId - $userId is logged out <br/>";
+        echo "userId - $userId is logged out \n";
     }
 }
